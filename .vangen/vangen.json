@@ -1,0 +1,13 @@
+{
+  "domain": "go.sykesdev.ca",
+  "docsDomain": "pkg.go.dev",
+  "index": false,
+  "repositories": [
+    {
+      "prefix": "go-birdc",
+      "type": "git",
+      "hidden": false,
+      "url": "https://gitlab.sykesdev.ca/standalone-projects/go-birdc"
+    }
+  ]
+}

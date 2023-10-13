@@ -1,7 +1,7 @@
 package gobirdc
 
 import (
-	"sykesdev.ca/go-birdc/socket"
+	"go.sykesdev.ca/go-birdc/socket"
 )
 
 type BirdClient struct {
