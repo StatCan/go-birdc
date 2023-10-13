@@ -1,0 +1,20 @@
+stages:
+  - validate
+
+before_script:
+  - export GOPATH=${CI_PROJECT_DIR}/.cache
+  - export PATH="${PATH}:${GOPATH}/bin"
+
+Lint:
+  image: golangci/golangci-lint:latest
+  stage: validate
+  script:
+    - golangci-lint run -v
+
+Run Tests:
+  image: golang:1.20
+  stage: validate
+  script:
+    - go fmt $(go list ./... | grep -v /tests)
+    - go vet $(go list ./... | grep -v /tests)
+    - go test -race $(go list ./... | grep -v /tests)

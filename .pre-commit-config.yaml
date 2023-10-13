@@ -1,0 +1,57 @@
+repos:
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v4.3.0
+  hooks:
+    - id: trailing-whitespace
+    - id: end-of-file-fixer
+    - id: check-toml
+    - id: check-shebang-scripts-are-executable
+    - id: check-symlinks
+    - id: no-commit-to-branch
+      args: [--branch, main, --branch, master]
+    - id: check-merge-conflict
+
+- repo: https://github.com/tekwizely/pre-commit-golang
+  rev: v1.0.0-rc.1
+  hooks:
+  #
+  # Go Mod Tidy
+  #
+  - id: go-mod-tidy-repo
+    always_run: true
+    verbose: true
+  #
+  # StaticCheck
+  #
+  - id: go-staticcheck-repo-mod
+    always_run: true
+    verbose: true
+  #
+  # Formatters
+  #
+  - id: go-fmt-repo
+    always_run: true
+    verbose: true
+  - id: go-imports-repo
+    always_run: true
+    verbose: true
+  #
+  # Go Build
+  #
+  - id: go-build-repo-mod
+    always_run: true
+    verbose: true
+  #
+  # Go Vet
+  #
+  - id: go-vet-repo-mod
+    always_run: true
+    verbose: true
+  #
+  # Custom Hooks
+  #
+  - name: go-errcheck-repo
+    id: my-cmd-repo
+    args: [ "errcheck" ]
+    always_run: true
+    verbose: true

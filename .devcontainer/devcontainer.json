@@ -1,0 +1,8 @@
+{
+	"name": "Debian-Bird-GO",
+  "build": {
+    "context": "..",
+    "dockerfile": "../Dockerfile"
+  },
+	"remoteUser": "root"
+}
