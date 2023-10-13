@@ -48,12 +48,14 @@ Deploy Module:
       [[ ! $(command -v vercel) ]] && echo "Please install vercel" && exit 1
 
       # build the static site with go meta tags
+      echo "[INFO] Building Static Site to host module proxy ..."
       vangen -config .vangen/vangen.json -out www/
 
       # deploy the static site to vercel
-      vercel pull --yes --cwd ./www/ --environment=$ENVIRONMENT --token=$VERCEL_TOKEN
-      vercel build --cwd ./www/ --token=$VERCEL_TOKEN
-      [[ $ENVIRONMENT == "preview" ]] && vercel deploy --cwd ./www/ --prebuilt --token=$VERCEL_TOKEN || vercel deploy --cwd ./www/ --prebuilt --prod --token=$VERCEL_TOKEN
+      echo "[INFO] Pulling settings from Vercel ..."
+      vercel pull --yes --cwd www/ --environment=$ENVIRONMENT --token=$VERCEL_TOKEN
+      echo "[INFO] Creating Vercel deployment ..."
+      [[ "$ENVIRONMENT" == "preview" ]] && vercel deploy --cwd www/ --prebuilt --token=$VERCEL_TOKEN || vercel deploy --cwd www/ --prebuilt --prod --token=$VERCEL_TOKEN
 
       echo "Deployment to $ENVIRONMENT complete!"
   when: manual
