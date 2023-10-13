@@ -1,7 +1,7 @@
 {
   "domain": "go.sykesdev.ca",
   "docsDomain": "pkg.go.dev",
-  "index": false,
+  "index": true,
   "repositories": [
     {
       "prefix": "go-birdc",
