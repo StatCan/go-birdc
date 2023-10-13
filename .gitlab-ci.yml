@@ -54,6 +54,8 @@ Deploy Module:
       # deploy the static site to vercel
       echo "[INFO] Pulling settings from Vercel ..."
       vercel pull --yes --cwd www/ --environment=$ENVIRONMENT --token=$VERCEL_TOKEN
+      echo "[INFO] Generating prebuild"
+      [[ "$ENVIRONMENT" == "preview" ]] && vercel build --cwd www/ --token=$VERCEL_TOKEN || vercel build --cwd www/ --prod --token=$VERCEL_TOKEN
       echo "[INFO] Creating Vercel deployment ..."
       [[ "$ENVIRONMENT" == "preview" ]] && vercel deploy --cwd www/ --prebuilt --token=$VERCEL_TOKEN || vercel deploy --cwd www/ --prebuilt --prod --token=$VERCEL_TOKEN
 
