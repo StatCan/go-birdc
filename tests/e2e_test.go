@@ -15,7 +15,7 @@ import (
 	"strings"
 	"testing"
 
-	gobirdc "sykesdev.ca/go-birdc"
+	gobirdc "go.sykesdev.ca/go-birdc"
 )
 
 const TEST_BIRD_SOCKET_PATH = "/usr/local/var/run/bird.ctl"

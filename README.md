@@ -7,16 +7,16 @@ A small GO library for working with the BIRD internet routing daemon through the
 Install the library as a dependency
 ```bash
 # Directly from source
-go get -u https://gitlab.sykesdev.ca/standalone-projects/go-birdc
+go get -u https://gitlab.go.sykesdev.ca/standalone-projects/go-birdc
 
 # Through goproxy
-go get -u sykesdev.ca/go-birdc@latest
+go get -u go.sykesdev.ca/go-birdc@latest
 ```
 
 Then start using it
 
 ```golang
-import "sykesdev.ca/go-birdc"
+import "go.sykesdev.ca/go-birdc"
 
 func main() {
 	b := New() // optionally you can specify a path to the unix socket endpoint (defaults to: /run/bird/bird.ctl)

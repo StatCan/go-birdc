@@ -1,5 +1,6 @@
 stages:
   - validate
+  - deploy
 
 before_script:
   - export GOPATH=${CI_PROJECT_DIR}/.cache
@@ -10,6 +11,10 @@ Lint:
   stage: validate
   script:
     - golangci-lint run -v
+  only:
+    - main
+    - master
+    - merge_requests
 
 Run Tests:
   image: golang:1.20
@@ -18,3 +23,22 @@ Run Tests:
     - go fmt $(go list ./... | grep -v /tests)
     - go vet $(go list ./... | grep -v /tests)
     - go test -race $(go list ./... | grep -v /tests)
+  only:
+    - main
+    - master
+    - merge_requests
+
+Deploy Module:
+  image: node:16.16.0
+  stage: deploy
+  variables:
+    ENVIRONMENT: production
+    VANGEN_VERSION: "1.4.0"
+  before_script:
+    - curl -sSL https://github.com/leighmcculloch/vangen/releases/download/v${VANGEN_VERSION}/vangen_${VANGEN_VERSION}_linux_amd64.tar.gz | tar xz -C /usr/local/bin vangen
+    - npm install -g vercel
+  script:
+    - publish/deploy.sh
+  when: manual
+  only:
+    - tags
