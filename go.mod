@@ -1,3 +1,3 @@
-module go.sykesdev.ca/go-birdc
+module github.com/StatCan/go-birdc
 
 go 1.20

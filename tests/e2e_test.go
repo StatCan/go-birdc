@@ -15,19 +15,24 @@ import (
 	"strings"
 	"testing"
 
-	gobirdc "go.sykesdev.ca/go-birdc"
+	gobirdc "github.com/StatCan/go-birdc"
 )
 
-const TEST_BIRD_SOCKET_PATH = "/usr/local/var/run/bird.ctl"
-
-var completeCodeRegexp *regexp.Regexp
+var (
+	testBirdClientOptions *gobirdc.BirdClientOptions
+	completeCodeRegexp    *regexp.Regexp
+)
 
 func init() {
+	testBirdClientOptions = &gobirdc.BirdClientOptions{
+		Path:             "/usr/local/var/run/bird.ctl",
+		SocketBufferSize: 4096,
+	}
 	completeCodeRegexp = regexp.MustCompile(`(?m)^([089][0-9]{3})`)
 }
 
 func TestShowStatus(t *testing.T) {
-	b := gobirdc.New(TEST_BIRD_SOCKET_PATH)
+	b := gobirdc.New(testBirdClientOptions)
 
 	resp, replyCode, err := b.ShowStatus()
 	if err != nil {
@@ -41,7 +46,7 @@ func TestShowStatus(t *testing.T) {
 }
 
 func TestShowMemory(t *testing.T) {
-	b := gobirdc.New(TEST_BIRD_SOCKET_PATH)
+	b := gobirdc.New(testBirdClientOptions)
 
 	resp, _, err := b.ShowMemory()
 	if err != nil {
@@ -55,7 +60,7 @@ func TestShowMemory(t *testing.T) {
 }
 
 func TestShowProtocols(t *testing.T) {
-	b := gobirdc.New(TEST_BIRD_SOCKET_PATH)
+	b := gobirdc.New(testBirdClientOptions)
 
 	resp, _, err := b.ShowProtocols()
 	if err != nil {
@@ -69,7 +74,7 @@ func TestShowProtocols(t *testing.T) {
 }
 
 func TestShowInterfaces(t *testing.T) {
-	b := gobirdc.New(TEST_BIRD_SOCKET_PATH)
+	b := gobirdc.New(testBirdClientOptions)
 
 	resp, _, err := b.ShowInterfaces()
 	if err != nil {
@@ -79,7 +84,7 @@ func TestShowInterfaces(t *testing.T) {
 }
 
 func TestShowRoute(t *testing.T) {
-	b := gobirdc.New(TEST_BIRD_SOCKET_PATH)
+	b := gobirdc.New(testBirdClientOptions)
 
 	resp, _, err := b.ShowRoute()
 	if err != nil {
@@ -89,7 +94,7 @@ func TestShowRoute(t *testing.T) {
 }
 
 func TestShowSymbols(t *testing.T) {
-	b := gobirdc.New(TEST_BIRD_SOCKET_PATH)
+	b := gobirdc.New(testBirdClientOptions)
 
 	resp, _, err := b.ShowSymbols()
 	if err != nil {
@@ -103,7 +108,7 @@ func TestShowSymbols(t *testing.T) {
 }
 
 func TestShowBFDSessions(t *testing.T) {
-	b := gobirdc.New(TEST_BIRD_SOCKET_PATH)
+	b := gobirdc.New(testBirdClientOptions)
 
 	resp, _, err := b.ShowBFDSessions()
 	if err != nil {
@@ -113,7 +118,7 @@ func TestShowBFDSessions(t *testing.T) {
 }
 
 func TestShowBabelInterfaces(t *testing.T) {
-	b := gobirdc.New(TEST_BIRD_SOCKET_PATH)
+	b := gobirdc.New(testBirdClientOptions)
 
 	resp, _, err := b.ShowBabelInterfaces()
 	if err != nil {
@@ -123,7 +128,7 @@ func TestShowBabelInterfaces(t *testing.T) {
 }
 
 func TestShowBabelNeighbors(t *testing.T) {
-	b := gobirdc.New(TEST_BIRD_SOCKET_PATH)
+	b := gobirdc.New(testBirdClientOptions)
 
 	resp, _, err := b.ShowBabelNeighbors()
 	if err != nil {
@@ -133,7 +138,7 @@ func TestShowBabelNeighbors(t *testing.T) {
 }
 
 func TestShowBabelEntries(t *testing.T) {
-	b := gobirdc.New(TEST_BIRD_SOCKET_PATH)
+	b := gobirdc.New(testBirdClientOptions)
 
 	resp, _, err := b.ShowBabelEntries()
 	if err != nil {
@@ -143,7 +148,7 @@ func TestShowBabelEntries(t *testing.T) {
 }
 
 func TestShowBabelRoutes(t *testing.T) {
-	b := gobirdc.New(TEST_BIRD_SOCKET_PATH)
+	b := gobirdc.New(testBirdClientOptions)
 
 	resp, _, err := b.ShowBabelRoutes()
 	if err != nil {
@@ -153,7 +158,7 @@ func TestShowBabelRoutes(t *testing.T) {
 }
 
 func TestShowOSPF(t *testing.T) {
-	b := gobirdc.New(TEST_BIRD_SOCKET_PATH)
+	b := gobirdc.New(testBirdClientOptions)
 
 	resp, _, err := b.ShowOSPF()
 	if err != nil {
@@ -163,7 +168,7 @@ func TestShowOSPF(t *testing.T) {
 }
 
 func TestShowRIPInterfaces(t *testing.T) {
-	b := gobirdc.New(TEST_BIRD_SOCKET_PATH)
+	b := gobirdc.New(testBirdClientOptions)
 
 	resp, _, err := b.ShowRIPInterfaces()
 	if err != nil {
@@ -173,7 +178,7 @@ func TestShowRIPInterfaces(t *testing.T) {
 }
 
 func TestShowRIPNeighbors(t *testing.T) {
-	b := gobirdc.New(TEST_BIRD_SOCKET_PATH)
+	b := gobirdc.New(testBirdClientOptions)
 
 	resp, _, err := b.ShowRIPNeighbors()
 	if err != nil {
@@ -183,7 +188,7 @@ func TestShowRIPNeighbors(t *testing.T) {
 }
 
 func TestShowStatic(t *testing.T) {
-	b := gobirdc.New(TEST_BIRD_SOCKET_PATH)
+	b := gobirdc.New(testBirdClientOptions)
 
 	resp, _, err := b.ShowStatic()
 	if err != nil {
@@ -193,7 +198,7 @@ func TestShowStatic(t *testing.T) {
 }
 
 func TestConfigure(t *testing.T) {
-	b := gobirdc.New(TEST_BIRD_SOCKET_PATH)
+	b := gobirdc.New(testBirdClientOptions)
 
 	resp, _, err := b.Configure()
 	if err != nil {
@@ -203,7 +208,7 @@ func TestConfigure(t *testing.T) {
 }
 
 func TestConfigureSoft(t *testing.T) {
-	b := gobirdc.New(TEST_BIRD_SOCKET_PATH)
+	b := gobirdc.New(testBirdClientOptions)
 
 	resp, _, err := b.Configure("soft")
 	if err != nil {

@@ -5,9 +5,12 @@
   "repositories": [
     {
       "prefix": "go-birdc",
+      "subs": [
+        "socket"
+      ],
       "type": "git",
       "hidden": false,
-      "url": "https://gitlab.sykesdev.ca/standalone-projects/go-birdc"
+      "url": "https://github.com/StatCan/go-birdc"
     }
   ]
 }
