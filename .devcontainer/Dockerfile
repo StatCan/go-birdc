@@ -26,5 +26,3 @@ RUN mkdir -pv /etc/bird \
   && curl -sSLo /etc/bird/bird.conf https://gitlab.nic.cz/labs/bird/-/raw/master/doc/bird.conf.example
 
 USER root
-
-CMD [ "bird", "-c", "/etc/bird/bird.conf" ]
