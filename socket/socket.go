@@ -12,7 +12,7 @@ var replyCodeExpr *regexp.Regexp
 
 func init() {
 	// https://gitlab.nic.cz/labs/bird/-/blob/master/doc/reply_codes
-	replyCodeExpr = regexp.MustCompile(`(?m)^([089][0-9]{3})`)
+	replyCodeExpr = regexp.MustCompile(`(?m)^([0189][0-9]{3})`)
 }
 
 // BirdSocket represents a socket connection to bird daemon

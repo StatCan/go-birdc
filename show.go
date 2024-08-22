@@ -1,7 +1,7 @@
 package gobirdc
 
 import (
-	"errors"
+	"fmt"
 	"strings"
 )
 
@@ -19,7 +19,7 @@ func (b *BirdClient) ShowStatus() (resp, replyCode []byte, err error) {
 	}
 
 	if replyCode[0] != '0' {
-		err = errors.New("got a non-zero reply-code from the server")
+		err = fmt.Errorf("got a non-zero reply-code (%s) from the server", string(replyCode))
 	}
 
 	return
@@ -39,7 +39,7 @@ func (b *BirdClient) ShowMemory() (resp, replyCode []byte, err error) {
 	}
 
 	if replyCode[0] != '0' {
-		err = errors.New("got a non-zero reply-code from the server")
+		err = fmt.Errorf("got a non-zero reply-code (%s) from the server", string(replyCode))
 	}
 
 	return
@@ -65,7 +65,7 @@ func (b *BirdClient) ShowProtocols(args ...string) (resp, replyCode []byte, err 
 	}
 
 	if replyCode[0] != '0' {
-		err = errors.New("got a non-zero reply-code from the server")
+		err = fmt.Errorf("got a non-zero reply-code (%s) from the server", string(replyCode))
 	}
 
 	return
@@ -92,7 +92,7 @@ func (b *BirdClient) ShowInterfaces(args ...string) (resp, replyCode []byte, err
 	}
 
 	if replyCode[0] != '0' {
-		err = errors.New("got a non-zero reply-code from the server")
+		err = fmt.Errorf("got a non-zero reply-code (%s) from the server", string(replyCode))
 	}
 
 	return
@@ -119,7 +119,7 @@ func (b *BirdClient) ShowRoute(args ...string) (resp, replyCode []byte, err erro
 	}
 
 	if replyCode[0] != '0' {
-		err = errors.New("got a non-zero reply-code from the server")
+		err = fmt.Errorf("got a non-zero reply-code (%s) from the server", string(replyCode))
 	}
 
 	return
@@ -146,7 +146,7 @@ func (b *BirdClient) ShowSymbols(args ...string) (resp, replyCode []byte, err er
 	}
 
 	if replyCode[0] != '0' {
-		err = errors.New("got a non-zero reply-code from the server")
+		err = fmt.Errorf("got a non-zero reply-code (%s) from the server", string(replyCode))
 	}
 
 	return
@@ -173,7 +173,7 @@ func (b *BirdClient) ShowBFDSessions(args ...string) (resp, replyCode []byte, er
 	}
 
 	if replyCode[0] != '0' {
-		err = errors.New("got a non-zero reply-code from the server")
+		err = fmt.Errorf("got a non-zero reply-code (%s) from the server", string(replyCode))
 	}
 
 	return
@@ -200,7 +200,7 @@ func (b *BirdClient) ShowBabelInterfaces(args ...string) (resp, replyCode []byte
 	}
 
 	if replyCode[0] != '0' {
-		err = errors.New("got a non-zero reply-code from the server")
+		err = fmt.Errorf("got a non-zero reply-code (%s) from the server", string(replyCode))
 	}
 
 	return
@@ -227,7 +227,7 @@ func (b *BirdClient) ShowBabelNeighbors(args ...string) (resp, replyCode []byte,
 	}
 
 	if replyCode[0] != '0' {
-		err = errors.New("got a non-zero reply-code from the server")
+		err = fmt.Errorf("got a non-zero reply-code (%s) from the server", string(replyCode))
 	}
 
 	return
@@ -254,7 +254,7 @@ func (b *BirdClient) ShowBabelEntries(args ...string) (resp, replyCode []byte, e
 	}
 
 	if replyCode[0] != '0' {
-		err = errors.New("got a non-zero reply-code from the server")
+		err = fmt.Errorf("got a non-zero reply-code (%s) from the server", string(replyCode))
 	}
 
 	return
@@ -281,7 +281,7 @@ func (b *BirdClient) ShowBabelRoutes(args ...string) (resp, replyCode []byte, er
 	}
 
 	if replyCode[0] != '0' {
-		err = errors.New("got a non-zero reply-code from the server")
+		err = fmt.Errorf("got a non-zero reply-code (%s) from the server", string(replyCode))
 	}
 
 	return
@@ -308,7 +308,7 @@ func (b *BirdClient) ShowOSPF(args ...string) (resp, replyCode []byte, err error
 	}
 
 	if replyCode[0] != '0' {
-		err = errors.New("got a non-zero reply-code from the server")
+		err = fmt.Errorf("got a non-zero reply-code (%s) from the server", string(replyCode))
 	}
 
 	return
@@ -335,7 +335,7 @@ func (b *BirdClient) ShowRIPInterfaces(args ...string) (resp, replyCode []byte, 
 	}
 
 	if replyCode[0] != '0' {
-		err = errors.New("got a non-zero reply-code from the server")
+		err = fmt.Errorf("got a non-zero reply-code (%s) from the server", string(replyCode))
 	}
 
 	return
@@ -362,7 +362,7 @@ func (b *BirdClient) ShowRIPNeighbors(args ...string) (resp, replyCode []byte, e
 	}
 
 	if replyCode[0] != '0' {
-		err = errors.New("got a non-zero reply-code from the server")
+		err = fmt.Errorf("got a non-zero reply-code (%s) from the server", string(replyCode))
 	}
 
 	return
@@ -389,7 +389,7 @@ func (b *BirdClient) ShowStatic(args ...string) (resp, replyCode []byte, err err
 	}
 
 	if replyCode[0] != '0' {
-		err = errors.New("got a non-zero reply-code from the server")
+		err = fmt.Errorf("got a non-zero reply-code (%s) from the server", string(replyCode))
 	}
 
 	return
