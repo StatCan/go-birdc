@@ -33,13 +33,23 @@ type BirdClientOptions struct {
 //		SocketBufferSize: 4096,
 //	}
 func New(opts *BirdClientOptions) *BirdClient {
-	if opts == nil || opts.SocketBufferSize == 0 || opts.Path == "" {
+	path := "/run/bird/bird.ctl"
+	socket_buffer_size := 4096
+
+	if opts == nil {
 		return &BirdClient{
-			s: socket.NewBirdSocket("/run/bird/bird.ctl", 4096),
+			s: socket.NewBirdSocket(path, socket_buffer_size),
 		}
 	}
 
+	if opts.Path != "" {
+		path = opts.Path
+	}
+	if opts.SocketBufferSize != 0 {
+		socket_buffer_size = opts.SocketBufferSize
+	}
+
 	return &BirdClient{
-		s: socket.NewBirdSocket(opts.Path, opts.SocketBufferSize),
+		s: socket.NewBirdSocket(path, socket_buffer_size),
 	}
 }
